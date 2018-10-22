@@ -2,44 +2,46 @@
 public class Hourglass {
 
 	public static void main(String[] args) {
-		base();
-		tophalf();
-		middle();
-		bottomhalf();
-		base();
+		int size=8; //size is number of quotes in base, only even sizes will give symmetrical hourglasses
+		base(size);
+		tophalf(size);
+		middle(size);
+		bottomhalf(size);
+		base(size);
 	}
 	
+	//receives string and and integer and prints the string the number of times dictated by integer 
 	public static void printchars(String character, int times) {
 		for(int i=1; i<=times; i++) {
 			System.out.print(character);
 		}
 	}
 	
-	public static void base() {
+	public static void base(int size) {
 		printchars("|", 1);
-		printchars("\"", 10);
+		printchars("\"", size);
 		printchars("|\n", 1);
 	}
 	
-	public static void tophalf() {
-		for(int i=1; i<=4; i++) {
+	public static void tophalf(int size) {
+		for(int i=1; i<=((size-2)/2); i++) {
 			printchars(" ", i);
 			printchars("\\", 1);
-			printchars(":", -2*i+10);
+			printchars(":", -2*i+size);
 			printchars("/\n", 1);
 		}
 	}
 	
-	public static void middle() {
-		printchars(" ", 5);
+	public static void middle(int size) {
+		printchars(" ", ((size-2)/2)+1);
 		printchars("||\n", 1);
 	}
 	
-	public static void bottomhalf() {
-		for(int i=4; i>=1; i--) {
+	public static void bottomhalf(int size) {
+		for(int i=((size-2)/2); i>=1; i--) {
 			printchars(" ", i);
 			printchars("/", 1);
-			printchars(":", -2*i+10);
+			printchars(":", -2*i+(size));
 			printchars("\\\n", 1);
 		}
 	}
