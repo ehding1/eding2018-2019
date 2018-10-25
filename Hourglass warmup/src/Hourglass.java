@@ -2,7 +2,7 @@
 public class Hourglass {
 
 	public static void main(String[] args) {
-		int size=20; //size is number of quotes in base, only even sizes will give symmetrical hourglasses
+		int size=60; //size is number of quotes in base, only even sizes will give symmetrical hourglasses
 		base(size);
 		tophalf(size);
 		middle(size);
