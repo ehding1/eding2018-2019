@@ -59,13 +59,24 @@ public class Split {
 		public static String breadSplit(String s) {
 			int bread1=s.indexOf("bread");
 			int bread2=s.length()-5;
+			int breadcount=0;
 			if (!s.substring(bread2).equals("bread")) {
 				while (!s.substring(bread2, bread2+5).equals("bread")) {
 					bread2--;
 				}
 			}
+			for (int i=0; i<s.length()-5; i++) {
+				if (s.substring(i, i+5).equals("bread")) {
+					breadcount++;
+				}
+			}
+			
 			String[] sandwichparts=s.split("bread");
-			return ((Arrays.toString(sandwichparts)).substring(bread1+3, bread2-2));
+			if(breadcount<=2) {
+				return ((Arrays.toString(sandwichparts)).substring(bread1+3, bread2-2));
+			} else {
+				return ((Arrays.toString(sandwichparts)).substring(bread1+3, bread2-(5*(breadcount-2))));
+			}
 		}
 			
 		
@@ -89,12 +100,12 @@ public class Split {
 		*/
 		
 		public static String spaceSplit (String s) {
-			String[] sandwichParts=s.split(" ");
-			String noSpaces="";
-			for(String t: sandwichParts) {
+			String[] sandwichParts=s.split(" "); //split by space removes all spaces 
+			String noSpaces=""; 				 // creates empty String noSpaces to eventually store String s modified to contain no spaces	
+			for(String t: sandwichParts) { 		 //for each loop to put each element of sandwich Parts into noSpaces
 				noSpaces+=t;
 			}
-			return breadSplit(noSpaces);
+			return breadSplit(noSpaces);		//String noSpaces is in same format as arguments for breadSplit, so you can just pass it in there
 		}
 	
 		
