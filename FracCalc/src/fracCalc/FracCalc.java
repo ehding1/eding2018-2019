@@ -96,24 +96,3 @@ public class FracCalc {
 }
 
     
-
-//addFrac(operand1, operand2)
-//if(operator = -)
-//	operand2 [0] *= -1
-//numerator=(operand1 [0] * operand2 [1] ) + (operand2 [0] * operand1 [1] )
-//denominator=operand1 [1] * operand2 [1]
-//numerator/=gcf(numerator, denominator)		****from calculate
-//denominator/=gcf(numerator, denominator)		****from calculate
-//toMixedNum(num, dem)  		            	****from calculate
-
-//multiplyFrac(operand1, operand2)
-//if(operator = /)
-//	Swap elements of operand2
-//Numerator = operand1 [0] * operand2 [0]
-//Denominator = operand1 [1] * operand2 [1]
-//Numerator /= gcf (numerator, denominator)		****from calculate
-//Denominator /= gcf (numerator, denominator)	****from calculate
-//toMixedNum (num, dem)       			****from calculate
-
-
-
