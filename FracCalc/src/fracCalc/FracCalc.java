@@ -51,7 +51,6 @@ public class FracCalc {
     		op2[0] = temp;
     		return multiplyFrac(operand);
     	}
-    	
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
