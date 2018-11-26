@@ -1,5 +1,6 @@
 package fracCalc;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FracCalc {
@@ -41,7 +42,7 @@ public class FracCalc {
     	if(operator.equals("+")) { 		//add
     		return addFrac(operand);
     	} if(operator.equals("-")) { 	//subtract
-    		op2[0]*=-1;
+    		operand[2] *= -1;
     		return addFrac(operand);
     	} if(operator.equals("*")) {	 //multiply
     		return multiplyFrac(operand);
@@ -58,6 +59,10 @@ public class FracCalc {
     public static int[] makeImproperFrac(String operand) {
     	String [] parts = operand.split("_"); //split into whole number and fraction 
     	String wholeNum = parts[0]; 	//set wholeNum equal to the part before underscore
+    	boolean testNeg = false;
+    	if(wholeNum.indexOf("-") != -1) { //checks if wholeNum contains a negative sign 
+    		testNeg = true;
+    	}
     	String numerator = "0"; 	//set default numerator to 0 to account for input with only whole number part
 		String denominator = "1"; 	//set default denominator to 1 to account for input with only whole number part
     	if(parts.length!=1) {	 //checks if it was split into whole number and fraction 
@@ -74,10 +79,13 @@ public class FracCalc {
     				wholeNum = "0";
     			}
     	}
-    	int num = Integer.parseInt(numerator); //turn Strings into int variables 
-    	int denom = Integer.parseInt(denominator);
-    	int wholenum = Integer.parseInt(wholeNum);
+    	int num = Math.abs(Integer.parseInt(numerator)); //turn Strings into int variables 
+    	int denom = Math.abs(Integer.parseInt(denominator));
+    	int wholenum = Math.abs(Integer.parseInt(wholeNum));
     	num = wholenum * denom + num;
+    	if(testNeg == true) { //if wholeNUm contained a negative sign multiply numerator by -1
+    		num *= -1;
+    	}
     	int [] op = {num, denom};
     	return op;
     }
