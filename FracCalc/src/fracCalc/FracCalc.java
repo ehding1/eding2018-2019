@@ -47,9 +47,9 @@ public class FracCalc {
     	} if(operator.equals("*")) {	 //multiply
     		return multiplyFrac(operand);
     	} else { 	//divide
-    		int temp = op2[1];
-    		op2[1] = op2[0];
-    		op2[0] = temp;
+    		int temp = operand[3];
+    		operand[3] = operand[2];
+    		operand[2] = temp;
     		return multiplyFrac(operand);
     	}
     }
