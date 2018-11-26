@@ -1,6 +1,5 @@
 package fracCalc;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class FracCalc {
@@ -33,21 +32,21 @@ public class FracCalc {
     public static String produceAnswer(String input) { 
         // TODO: Implement this function to produce the solution to the input
     	String [] expression = input.split(" "); //splits into operands and operator
-    	String operand1 = expression[0]; 
-    	String operator = expression[1]; 
-    	String operand2 = expression[2]; 
-    	int [] op1 = makeImproperFrac(operand1);
-    	int [] op2 = makeImproperFrac(operand2);
-    	int [] operand = {op1[0], op1[1], op2[0], op2[1]}; //puts both numerators and both denominators into array
+    	String operand1 = expression[0];  //assigns first operand to variable 
+    	String operator = expression[1];  //assigns operator to variable
+    	String operand2 = expression[2];  //assigns second operand to variable
+    	int [] op1 = makeImproperFrac(operand1);  //turns first operand into improper fraction
+    	int [] op2 = makeImproperFrac(operand2);  //turns second operand into improper fraction
+    	int [] operand = {op1[0], op1[1], op2[0], op2[1]}; //puts both numerators and both denominators into single array
     	if(operator.equals("+")) { 		//add
     		return addFrac(operand);
-    	} if(operator.equals("-")) { 	//subtract
+    	} if(operator.equals("-")) { 	//subtract by turning making operand negative and adding
     		operand[2] *= -1;
     		return addFrac(operand);
-    	} if(operator.equals("*")) {	 //multiply
+    	} if(operator.equals("*")) {	//multiply
     		return multiplyFrac(operand);
-    	} else { 	//divide
-    		int temp = operand[3];
+    	} else { 					    //divide by swapping numerator and denominator of second operand and multiplying 
+    		int temp = operand[3];		
     		operand[3] = operand[2];
     		operand[2] = temp;
     		return multiplyFrac(operand);
@@ -79,24 +78,24 @@ public class FracCalc {
     				wholeNum = "0";
     			}
     	}
-    	int num = Math.abs(Integer.parseInt(numerator)); //turn Strings into int variables 
+    	int num = Math.abs(Integer.parseInt(numerator)); //turn Strings into absolute value of int variables 
     	int denom = Math.abs(Integer.parseInt(denominator));
     	int wholenum = Math.abs(Integer.parseInt(wholeNum));
     	num = wholenum * denom + num;
-    	if(testNeg == true) { //if wholeNUm contained a negative sign multiply numerator by -1
+    	if(testNeg == true) { //if wholeNum contained a negative sign multiply numerator by -1
     		num *= -1;
     	}
-    	int [] op = {num, denom};
+    	int [] op = {num, denom}; //stores operand as numerator and denominator in array 
     	return op;
     }
 
-    public static String addFrac (int [] operand) {
+    public static String addFrac (int [] operand) { //method for adding and subtracting
     	int numerator = (operand[0] * operand[3]) + (operand[2] * operand[1]);
     	int denominator = operand[1] * operand[3];
     	return numerator+"/"+denominator;
     }
     
-    public static String multiplyFrac (int [] operand) {
+    public static String multiplyFrac (int [] operand) { //method of multiplying and dividing
     	int numerator = operand[0] * operand[2];
     	int denominator = operand[1] * operand[3];
     	return numerator+"/"+denominator;
