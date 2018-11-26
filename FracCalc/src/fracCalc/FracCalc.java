@@ -31,21 +31,21 @@ public class FracCalc {
    
     public static String produceAnswer(String input) { 
         // TODO: Implement this function to produce the solution to the input
-    	String [] expression = input.split(" ");
+    	String [] expression = input.split(" "); //splits into operands and operator
     	String operand1 = expression[0]; 
     	String operator = expression[1]; 
     	String operand2 = expression[2]; 
     	int [] op1 = makeImproperFrac(operand1);
     	int [] op2 = makeImproperFrac(operand2);
-    	int [] operand = {op1[0], op1[1], op2[0], op2[1]}; 
-    	if(operator.equals("+")) {
+    	int [] operand = {op1[0], op1[1], op2[0], op2[1]}; //puts both numerators and both denominators into array
+    	if(operator.equals("+")) { 		//add
     		return addFrac(operand);
-    	} if(operator.equals("-")) {
+    	} if(operator.equals("-")) { 	//subtract
     		op2[0]*=-1;
     		return addFrac(operand);
-    	} if(operator.equals("*")) {
+    	} if(operator.equals("*")) {	 //multiply
     		return multiplyFrac(operand);
-    	} else {
+    	} else { 	//divide
     		int temp = op2[1];
     		op2[1] = op2[0];
     		op2[0] = temp;
