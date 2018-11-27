@@ -92,14 +92,40 @@ public class FracCalc {
     public static String addFrac (int [] operand) { //method for adding and subtracting
     	int numerator = (operand[0] * operand[3]) + (operand[2] * operand[1]);
     	int denominator = operand[1] * operand[3];
+    	numerator /= gcf(operand);
+    	denominator /= gcf(operand);
     	return numerator+"/"+denominator;
     }
     
     public static String multiplyFrac (int [] operand) { //method of multiplying and dividing
     	int numerator = operand[0] * operand[2];
     	int denominator = operand[1] * operand[3];
+    	numerator /= gcf(operand);
+    	denominator /= gcf(operand);
     	return numerator+"/"+denominator;
     }
-}
 
-    
+    //determines whether or not one integer is evenly divisible by another
+    public static boolean isDivisibleBy (int dividend, int divisor) {
+    	if (divisor == 0) {
+    		throw new IllegalArgumentException("Cannot divide by zero");
+    	} 
+    	if (dividend%divisor==0) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+
+    //finds greatest common factor of two integers
+    public static int gcf (int [] operand) {
+    	int answer = 1;
+    	for (int i = operand[1]; i>=1; i--) {
+    		if(isDivisibleBy(operand[1], i) && (isDivisibleBy(operand[2], i))) {
+    			answer = i;
+    			i = 0;
+    		}
+    	}
+    	return answer;
+    }
+}
