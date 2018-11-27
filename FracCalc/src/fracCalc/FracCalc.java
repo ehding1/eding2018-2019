@@ -1,5 +1,6 @@
 package fracCalc;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FracCalc {
@@ -8,12 +9,12 @@ public class FracCalc {
         // TODO: Read the input from the user and call produceAnswer with an equation
     	Scanner console = new Scanner(System.in);
     	boolean done = false;
+    	System.out.println("Enter a fraction expression");
     	while(done == false) {
-    		System.out.println("Enter a fraction expression");
     		String input = console.nextLine();
     		System.out.println(produceAnswer(input));
     		System.out.println("If you want to quit, type \"quit\". If you want to continue, enter new fraction expression.");
-    		if(console.next().equals("quit")) {
+    		if(input.equals("quit")) {
     			done = true;
     		}
     	}
@@ -92,17 +93,43 @@ public class FracCalc {
     public static String addFrac (int [] operand) { //method for adding and subtracting
     	int numerator = (operand[0] * operand[3]) + (operand[2] * operand[1]);
     	int denominator = operand[1] * operand[3];
-    	numerator /= gcf(operand);
-    	denominator /= gcf(operand);
-    	return numerator+"/"+denominator;
+    	int [] fraction = reduceFrac(numerator, denominator);
+    	numerator = fraction[0];
+    	denominator = fraction[1];
+    	if(denominator == 1 || numerator == 0) {
+    		return numerator + "";
+    	}
+    	if(Math.abs(numerator) > Math.abs(denominator)) {
+    		int wholeNum = numerator/denominator;
+    			if(wholeNum == 0) {
+    				return numerator + "/" + denominator;
+    			}
+    			if(numerator == 0) {
+    				return wholeNum+"";
+    			}
+    		numerator -= (wholeNum * denominator);
+    		return wholeNum + "_" + Math.abs(numerator) + "/"+Math.abs(denominator);
+    	} else {
+    		return numerator + "/" + denominator;
+    	}
     }
     
     public static String multiplyFrac (int [] operand) { //method of multiplying and dividing
     	int numerator = operand[0] * operand[2];
     	int denominator = operand[1] * operand[3];
-    	numerator /= gcf(operand);
-    	denominator /= gcf(operand);
-    	return numerator+"/"+denominator;
+    	int [] fraction = reduceFrac(numerator, denominator);
+    	numerator = fraction[0];
+    	denominator = fraction[1];
+    	if(denominator == 1 || numerator == 0) {
+    		return numerator + "";
+    	}
+    	if(Math.abs(numerator)/Math.abs(denominator) > 1) {
+    		int wholeNum = numerator/denominator;
+    		numerator -= (wholeNum * denominator);
+    		return wholeNum + "_" + Math.abs(numerator) + "/" + Math.abs(denominator);
+    	} else {
+    		return numerator + "/" + denominator;
+    	}
     }
 
     //determines whether or not one integer is evenly divisible by another
@@ -110,7 +137,7 @@ public class FracCalc {
     	if (divisor == 0) {
     		throw new IllegalArgumentException("Cannot divide by zero");
     	} 
-    	if (dividend%divisor==0) {
+    	if (dividend % divisor == 0) {
     		return true;
     	} else {
     		return false;
@@ -118,14 +145,27 @@ public class FracCalc {
     }
 
     //finds greatest common factor of two integers
-    public static int gcf (int [] operand) {
+    public static int gcf (int numerator, int denominator) {
     	int answer = 1;
-    	for (int i = operand[1]; i>=1; i--) {
-    		if(isDivisibleBy(operand[1], i) && (isDivisibleBy(operand[2], i))) {
+    	numerator = Math.abs(numerator);
+    	denominator = Math.abs(denominator);
+    	for (int i = numerator; i >= 1; i--) {
+    		if(isDivisibleBy(numerator, i) == true && (isDivisibleBy(denominator, i)) == true) {
     			answer = i;
     			i = 0;
     		}
     	}
     	return answer;
     }
+    
+    //reduces fractions to lowest form
+    public static int [] reduceFrac (int numerator, int denominator) {
+    	int reduce = Math.abs(gcf(numerator, denominator));
+    	numerator /= reduce;
+    	denominator /= reduce;
+    	int [] fraction = {numerator, denominator};
+    	return fraction;
+    }
 }
+
+	
