@@ -47,6 +47,10 @@ public class FracCalc {
     	} if(operator.equals("*")) {	//multiply
     		return multiplyFrac(operand);
     	} else { 					    //divide by swapping numerator and denominator of second operand and multiplying 
+    		if(operand[2] < 0) {
+    			operand[2] *= -1;
+    			operand[3] *= -1;
+    		}
     		int temp = operand[3];		
     		operand[3] = operand[2];
     		operand[2] = temp;
@@ -108,7 +112,7 @@ public class FracCalc {
     				return wholeNum+"";
     			}
     		numerator -= (wholeNum * denominator);
-    		return wholeNum + "_" + Math.abs(numerator) + "/"+Math.abs(denominator);
+    		return wholeNum + "_" + Math.abs(numerator) + "/" + Math.abs(denominator);
     	} else {
     		return numerator + "/" + denominator;
     	}
@@ -123,7 +127,7 @@ public class FracCalc {
     	if(denominator == 1 || numerator == 0) {
     		return numerator + "";
     	}
-    	if(Math.abs(numerator)/Math.abs(denominator) > 1) {
+    	if(Math.abs(numerator)/Math.abs(denominator) >= 1) {
     		int wholeNum = numerator/denominator;
     		numerator -= (wholeNum * denominator);
     		return wholeNum + "_" + Math.abs(numerator) + "/" + Math.abs(denominator);
