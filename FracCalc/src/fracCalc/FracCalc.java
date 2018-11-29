@@ -64,7 +64,7 @@ public class FracCalc {
     	String [] parts = operand.split("_"); //split into whole number and fraction 
     	String wholeNum = parts[0]; 	//set wholeNum equal to the part before underscore
     	boolean testNeg = false;
-    	if(wholeNum.indexOf("-") != -1) { //checks if wholeNum contains a negative sign 
+    	if(wholeNum.contains("-")) { //checks if wholeNum contains a negative sign 
     		testNeg = true;
     	}
     	String numerator = "0"; 	//set default numerator to 0 to account for input with only whole number part
