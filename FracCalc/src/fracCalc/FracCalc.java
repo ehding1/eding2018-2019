@@ -1,6 +1,7 @@
 package fracCalc;
 
 import java.util.Arrays;
+
 import java.util.Scanner;
 
 public class FracCalc {
@@ -103,20 +104,15 @@ public class FracCalc {
     	if(denominator == 1 || numerator == 0) {
     		return numerator + "";
     	}
-    	if(Math.abs(numerator) > Math.abs(denominator)) {
+    	if(Math.abs(numerator)/Math.abs(denominator) >= 1) {
     		int wholeNum = numerator/denominator;
-    			if(wholeNum == 0) {
-    				return numerator + "/" + denominator;
-    			}
-    			if(numerator == 0) {
-    				return wholeNum+"";
-    			}
     		numerator -= (wholeNum * denominator);
     		return wholeNum + "_" + Math.abs(numerator) + "/" + Math.abs(denominator);
     	} else {
     		return numerator + "/" + denominator;
     	}
     }
+
     
     public static String multiplyFrac (int [] operand) { //method of multiplying and dividing
     	int numerator = operand[0] * operand[2];
