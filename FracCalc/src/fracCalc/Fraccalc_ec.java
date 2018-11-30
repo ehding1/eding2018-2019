@@ -33,9 +33,10 @@ public class Fraccalc_ec {
 	    public static String produceAnswer(String input) { 
 	        // TODO: Implement this function to produce the solution to the input
 	    	String [] expression = input.split(" "); //splits into operands and operator
+	    	int length = expression.length;
 	    	String next="";
 	    	int count = 0; 
-	    	while(count < ((expression.length-1)/2)+1) {
+	    	while(count < (length-1)) {
 	    		String operand1 = expression[0];  //assigns first operand to variable 
 	    		String operator = expression[1];  //assigns operator to variable
 	    		String operand2 = expression[2];  //assigns second operand to variable
@@ -44,7 +45,6 @@ public class Fraccalc_ec {
 	    		int [] operand = {op1[0], op1[1], op2[0], op2[1]}; //puts both numerators and both denominators into single array
 	    		if(operator.equals("+")) { 		//add
 	    			next = addFrac(operand); 
-	    			System.out.println(next);
 	    		} else if(operator.equals("-")) { 	//subtract by turning making operand negative and adding
 	    			operand[2] *= -1;
 	    			next = addFrac(operand);
@@ -60,13 +60,14 @@ public class Fraccalc_ec {
 	    			operand[2] = temp;
 	    			next = multiplyFrac(operand);
 	    		}
-	    		for(int i = count + 3; i < expression.length; i++) {
-	    			next += " "+expression[i]+"";
-	    		}
-	    		input = next;
-	    		count++;
-	    		expression = input.split(" "); //splits into operands and operator
 	    		System.out.println(next);
+	    		for(int i = 3; i < expression.length; i++) {
+	    				next += " " + expression[i];
+	    				System.out.println(next);
+	    		}
+	    		count += 2;
+	    		expression = next.split(" "); //splits into operands and operator
+	    		System.out.println(Arrays.toString(expression));
 	    	}
 	    	return next;
 	    }
