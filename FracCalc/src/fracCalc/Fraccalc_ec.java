@@ -60,14 +60,11 @@ public class Fraccalc_ec {
 	    			operand[2] = temp;
 	    			next = multiplyFrac(operand);
 	    		}
-	    		System.out.println(next);
 	    		for(int i = 3; i < expression.length; i++) {
 	    				next += " " + expression[i];
-	    				System.out.println(next);
 	    		}
 	    		count += 2;
 	    		expression = next.split(" "); //splits into operands and operator
-	    		System.out.println(Arrays.toString(expression));
 	    	}
 	    	return next;
 	    }
