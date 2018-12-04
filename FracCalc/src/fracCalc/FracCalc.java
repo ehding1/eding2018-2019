@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class FracCalc {
 	 public static void main(String[] args) {
-	        // TODO: Read the input from the user and call produceAnswer with an equation
 	    	Scanner console = new Scanner(System.in);
 	    	boolean done = false;
 	    	System.out.println("Enter a fraction expression");
@@ -18,18 +17,11 @@ public class FracCalc {
 	    	}
 	    	console.close();
 	    }
-	    
-	    // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
-	    // This function takes a String 'input' and produces the result
-	    //
-	    // input is a fraction string that needs to be evaluated.  For your program, this will be the user input.
-	    //      e.g. input ==> "1/2 + 3/4"
-	    //        
-	    // The function should return the result of the fraction after it has been calculated
-	    //      e.g. return ==> "1_1/4"
 	   
 	    public static String produceAnswer(String input) { 
-	        // TODO: Implement this function to produce the solution to the input
+	    	if(input.contains("/0")) { //accounts for dividing by zero
+	    		return "Cannot divide by zero.";
+	    	}
 	    	String [] expression = input.split(" "); //splits into operands and operator
 	    	int length = expression.length;
 	    	String next="";
@@ -37,7 +29,24 @@ public class FracCalc {
 	    	while(count < (length-1)) {
 	    		String operand1 = expression[0];  //assigns first operand to variable 
 	    		String operator = expression[1];  //assigns operator to variable
+	    		if(!(operator.equals("+") || operator.equals("*") || operator.equals("/") || operator.equals("-"))) {
+	    			return "Input is in an invalid format.";
+	    		}
 	    		String operand2 = expression[2];  //assigns second operand to variable
+	    	
+	    		
+	    		for(int i = 0; i < operand1.length(); i++) {
+	    			if(!(operand1.charAt(i) == ('0') || operand1.charAt(i) == ('1') || operand1.charAt(i) == ('2') || operand1.charAt(i) == ('3') || operand1.charAt(i) == ('4') || operand1.charAt(i) == ('5') || operand1.charAt(i) == ('6') || operand1.charAt(i) == ('7') || operand1.charAt(i) == ('8') || operand1.charAt(i) == ('9') || operand1.charAt(i) == ('_') || operand1.charAt(i) == ('/'))) {
+	    				return "Input is in an invalid format.";	
+	    			}
+	    		}
+	    		for(int i = 0; i < operand1.length(); i++) {
+	    			if(!(operand2.charAt(i) == ('0') || operand2.charAt(i) == ('1') || operand2.charAt(i) == ('2') || operand2.charAt(i) == ('3') || operand2.charAt(i) == ('4') || operand2.charAt(i) == ('5') || operand2.charAt(i) == ('6') || operand2.charAt(i) == ('7') || operand2.charAt(i) == ('8') || operand2.charAt(i) == ('9') || operand2.charAt(i) == ('_') || operand2.charAt(i) == ('/'))) {
+	    				return "Input is in an invalid format.";	
+	    			}
+	    		}
+	    		
+	    		
 	    		int [] op1 = makeImproperFrac(operand1);  //turns first operand into improper fraction
 	    		int [] op2 = makeImproperFrac(operand2);  //turns second operand into improper fraction
 	    		int [] operand = {op1[0], op1[1], op2[0], op2[1]}; //puts both numerators and both denominators into single array
@@ -66,8 +75,6 @@ public class FracCalc {
 	    	}
 	    	return next;
 	    }
-
-	    // TODO: Fill in the space below with any helper methods that you think you will need
 	    
 	    public static int[] makeImproperFrac(String operand) {
 	    	String [] parts = operand.split("_"); //split into whole number and fraction 
@@ -96,7 +103,7 @@ public class FracCalc {
 	    	int denom = Math.abs(Integer.parseInt(denominator));
 	    	int wholenum = Math.abs(Integer.parseInt(wholeNum));
 	    	num = wholenum * denom + num;
-	    	if(testNeg == true) { //if wholeNum contained a negative sign multiply numerator by -1
+	    	if(testNeg) { //if wholeNum contained a negative sign multiply numerator by -1
 	    		num *= -1;
 	    	}
 	    	int [] op = {num, denom}; //stores operand as numerator and denominator in array 
@@ -121,7 +128,6 @@ public class FracCalc {
 	    	}
 	    }
 
-	    
 	    public static String multiplyFrac (int [] operand) { //method of multiplying and dividing
 	    	int numerator = operand[0] * operand[2];
 	    	int denominator = operand[1] * operand[3];
@@ -139,9 +145,8 @@ public class FracCalc {
 	    		return numerator + "/" + denominator;
 	    	}
 	    }
-
-	    //determines whether or not one integer is evenly divisible by another
-	    public static boolean isDivisibleBy (int dividend, int divisor) {
+	    
+	    public static boolean isDivisibleBy (int dividend, int divisor) {  //determines whether or not one integer is evenly divisible by another
 	    	if (divisor == 0) {
 	    		throw new IllegalArgumentException("Cannot divide by zero");
 	    	} 
@@ -151,23 +156,21 @@ public class FracCalc {
 	    		return false;
 	    	}
 	    }
-
-	    //finds greatest common factor of two integers
-	    public static int gcf (int numerator, int denominator) {
+	 
+	    public static int gcf (int numerator, int denominator) {    //finds greatest common factor of two integers
 	    	int answer = 1;
 	    	numerator = Math.abs(numerator);
 	    	denominator = Math.abs(denominator);
 	    	for (int i = numerator; i >= 1; i--) {
-	    		if(isDivisibleBy(numerator, i) == true && (isDivisibleBy(denominator, i)) == true) {
+	    		if(isDivisibleBy(numerator, i) && (isDivisibleBy(denominator, i))) {
 	    			answer = i;
 	    			i = 0;
 	    		}
 	    	}
 	    	return answer;
 	    }
-	    
-	    //reduces fractions to lowest form
-	    public static int [] reduceFrac (int numerator, int denominator) {
+
+	    public static int [] reduceFrac (int numerator, int denominator) { 	    //reduces fractions to lowest form
 	    	int reduce = Math.abs(gcf(numerator, denominator));
 	    	numerator /= reduce;
 	    	denominator /= reduce;
