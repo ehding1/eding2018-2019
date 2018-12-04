@@ -35,16 +35,20 @@ public class FracCalc {
 	    		String operand2 = expression[2];  //assigns second operand to variable
 	    	
 	    		
+	    		
+	    		
 	    		for(int i = 0; i < operand1.length(); i++) {
-	    			if(!(operand1.charAt(i) == ('0') || operand1.charAt(i) == ('1') || operand1.charAt(i) == ('2') || operand1.charAt(i) == ('3') || operand1.charAt(i) == ('4') || operand1.charAt(i) == ('5') || operand1.charAt(i) == ('6') || operand1.charAt(i) == ('7') || operand1.charAt(i) == ('8') || operand1.charAt(i) == ('9') || operand1.charAt(i) == ('_') || operand1.charAt(i) == ('/'))) {
+	    			if(!(operand1.charAt(i) == ('0') || operand1.charAt(i) == ('1') || operand1.charAt(i) == ('2') || operand1.charAt(i) == ('3') || operand1.charAt(i) == ('4') || operand1.charAt(i) == ('5') || operand1.charAt(i) == ('6') || operand1.charAt(i) == ('7') || operand1.charAt(i) == ('8') || operand1.charAt(i) == ('9') || operand1.charAt(i) == ('_') || operand1.charAt(i) == ('/') || operand1.charAt(i) == ('-'))) {
 	    				return "Input is in an invalid format.";	
 	    			}
 	    		}
-	    		for(int i = 0; i < operand1.length(); i++) {
-	    			if(!(operand2.charAt(i) == ('0') || operand2.charAt(i) == ('1') || operand2.charAt(i) == ('2') || operand2.charAt(i) == ('3') || operand2.charAt(i) == ('4') || operand2.charAt(i) == ('5') || operand2.charAt(i) == ('6') || operand2.charAt(i) == ('7') || operand2.charAt(i) == ('8') || operand2.charAt(i) == ('9') || operand2.charAt(i) == ('_') || operand2.charAt(i) == ('/'))) {
+	    		for(int i = 0; i < operand2.length(); i++) {
+	    			if(!(operand2.charAt(i) == ('0') || operand2.charAt(i) == ('1') || operand2.charAt(i) == ('2') || operand2.charAt(i) == ('3') || operand2.charAt(i) == ('4') || operand2.charAt(i) == ('5') || operand2.charAt(i) == ('6') || operand2.charAt(i) == ('7') || operand2.charAt(i) == ('8') || operand2.charAt(i) == ('9') || operand2.charAt(i) == ('_') || operand2.charAt(i) == ('/') || operand2.charAt(i) == ('-'))) {
 	    				return "Input is in an invalid format.";	
 	    			}
 	    		}
+	    		
+	    		
 	    		
 	    		
 	    		int [] op1 = makeImproperFrac(operand1);  //turns first operand into improper fraction
