@@ -29,7 +29,7 @@ public class FracCalc {
 	    	while(count < (length-1)) {
 	    		String operand1 = expression[0];  //assigns first operand to variable 
 	    		String operator = expression[1];  //assigns operator to variable
-	    		if(!(operator.equals("+") || operator.equals("*") || operator.equals("/") || operator.equals("-"))) {
+	    		if(!(operator.equals("+") || operator.equals("*") || operator.equals("/") || operator.equals("-"))) { //checks for format errors in operator
 	    			return "Input is in an invalid format.";
 	    		}
 	    		String operand2 = expression[2];  //assigns second operand to variable
@@ -39,12 +39,12 @@ public class FracCalc {
 	    		
 	    		for(int i = 0; i < operand1.length(); i++) {
 	    			if(!(operand1.charAt(i) == ('0') || operand1.charAt(i) == ('1') || operand1.charAt(i) == ('2') || operand1.charAt(i) == ('3') || operand1.charAt(i) == ('4') || operand1.charAt(i) == ('5') || operand1.charAt(i) == ('6') || operand1.charAt(i) == ('7') || operand1.charAt(i) == ('8') || operand1.charAt(i) == ('9') || operand1.charAt(i) == ('_') || operand1.charAt(i) == ('/') || operand1.charAt(i) == ('-'))) {
-	    				return "Input is in an invalid format.";	
+	    				return "Input is in an invalid format.";	//checks for format errors in first operand
 	    			}
 	    		}
 	    		for(int i = 0; i < operand2.length(); i++) {
 	    			if(!(operand2.charAt(i) == ('0') || operand2.charAt(i) == ('1') || operand2.charAt(i) == ('2') || operand2.charAt(i) == ('3') || operand2.charAt(i) == ('4') || operand2.charAt(i) == ('5') || operand2.charAt(i) == ('6') || operand2.charAt(i) == ('7') || operand2.charAt(i) == ('8') || operand2.charAt(i) == ('9') || operand2.charAt(i) == ('_') || operand2.charAt(i) == ('/') || operand2.charAt(i) == ('-'))) {
-	    				return "Input is in an invalid format.";	
+	    				return "Input is in an invalid format.";	//checks for format errors in second operand
 	    			}
 	    		}
 	    		
