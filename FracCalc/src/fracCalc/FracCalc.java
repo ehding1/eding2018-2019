@@ -36,7 +36,7 @@ public class FracCalc {
 	    		
 	    		for(int i = 0; i < operand1.length(); i++) {
 	    			if(!(operand1.charAt(i) == ('0') || operand1.charAt(i) == ('1') || operand1.charAt(i) == ('2') || operand1.charAt(i) == ('3') || operand1.charAt(i) == ('4') || operand1.charAt(i) == ('5') || operand1.charAt(i) == ('6') || operand1.charAt(i) == ('7') || operand1.charAt(i) == ('8') || operand1.charAt(i) == ('9') || operand1.charAt(i) == ('_') || operand1.charAt(i) == ('/') || operand1.charAt(i) == ('-'))) {
-	    				return "Input is in an invalid format.";	//checks for format errors in first operand
+	    				return "Input is in an invalid format.";	//checks for format error in first operand
 	    			}
 	    		}
 	    		for(int i = 0; i < operand2.length(); i++) {
